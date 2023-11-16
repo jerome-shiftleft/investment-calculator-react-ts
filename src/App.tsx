@@ -14,6 +14,8 @@ function App() {
     duration: 10,
   });
 
+  const inputIsValid = userInput.duration >= 1;
+
   // function handleChange(
   //   inputIdentifier: keyof UserInputType,
   //   newValue: number
@@ -40,8 +42,10 @@ function App() {
   return (
     <>
       <Header />
-      <UserInput onChange={handleChange} userInput={userInput} />
-      <Results input={userInput} />
+      <UserInput onChange={handleChange} userInput={userInput} />     
+
+      {inputIsValid ? <Results input={userInput} /> : <p className='center'>Duration &gt;= 1</p>}
+      
     </>
   );
 }
