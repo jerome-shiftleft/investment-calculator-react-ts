@@ -1,43 +1,11 @@
-import { useState } from "react";
+import type { UserInputType } from "../types";
 
-function UserInput() {
-  type UserInputType = {
-    initialInvestment: number;
-    annualInvestment: number;
-    expectedReturn: number;
-    duration: number;
-  };
+type Props = {
+  onChange: (inputIdentifier: keyof UserInputType, newValue: number) => void;
+  userInput: UserInputType;
+};
 
-  const [userInput, setUserInput] = useState<UserInputType>({
-    initialInvestment: 1000,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  // function handleChange(
-  //   inputIdentifier: keyof UserInputType,
-  //   newValue: number
-  // ) {
-  //   setUserInput((prevUserInput) => {
-  //     return {
-  //       ...prevUserInput,
-  //       [inputIdentifier]: newValue,
-  //     };
-  //   });
-  // }
-
-  function handleChange(
-    inputIdentifier: keyof UserInputType,
-    newValue: number
-  ) {
-    setUserInput((prevUserInput) => {
-      const newInput = { ...prevUserInput };
-      newInput[inputIdentifier] = newValue;
-      return newInput;
-    });
-  }
-
+function UserInput({ onChange, userInput }: Props) {
   return (
     <section id="user-input">
       <div className="input-group">
@@ -48,7 +16,7 @@ function UserInput() {
             required
             value={userInput.initialInvestment}
             onChange={(event) =>
-              handleChange("initialInvestment", Number(event.target.value))
+              onChange("initialInvestment", Number(event.target.value))
             }
           />
         </p>
@@ -59,7 +27,7 @@ function UserInput() {
             required
             value={userInput.annualInvestment}
             onChange={(event) =>
-              handleChange("annualInvestment", Number(event.target.value))
+              onChange("annualInvestment", Number(event.target.value))
             }
           />
         </p>
@@ -70,7 +38,7 @@ function UserInput() {
             required
             value={userInput.expectedReturn}
             onChange={(event) =>
-              handleChange("expectedReturn", Number(event.target.value))
+              onChange("expectedReturn", Number(event.target.value))
             }
           />
         </p>
@@ -81,7 +49,7 @@ function UserInput() {
             required
             value={userInput.duration}
             onChange={(event) =>
-              handleChange("duration", Number(event.target.value))
+              onChange("duration", Number(event.target.value))
             }
           />
         </p>
