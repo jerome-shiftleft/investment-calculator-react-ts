@@ -1,9 +1,4 @@
-type UserInputType = {
-  initialInvestment: number;
-  annualInvestment: number;
-  expectedReturn: number;
-  duration: number;
-};
+import type { UserInputType } from "../types";
 
 type Props = {
   onChange: (inputIdentifier: keyof UserInputType, newValue: number) => void;
